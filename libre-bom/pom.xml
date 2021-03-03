@@ -53,7 +53,7 @@
            </dependency>
            <dependency>
                <groupId>com.libre</groupId>
-               <artifactId>libre-redis-spring-boot-starter</artifactId>
+               <artifactId>libre-redis-boot-starter</artifactId>
                <version>${libre.dependencies.version}</version>
            </dependency>
            <dependency>
@@ -89,11 +89,27 @@
                <artifactId>hutool-all</artifactId>
                <version>${hutool.version}</version>
            </dependency>
+           <!-- protostuff -->
+           <dependency>
+               <groupId>io.protostuff</groupId>
+               <artifactId>protostuff-core</artifactId>
+               <version>${protostuff.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>io.protostuff</groupId>
+               <artifactId>protostuff-runtime</artifactId>
+               <version>${protostuff.version}</version>
+           </dependency>
            <!--jasypt-->
            <dependency>
                <groupId>com.github.ulisesbocchio</groupId>
                <artifactId>jasypt-spring-boot-starter</artifactId>
                <version>${jasypt.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.projectlombok</groupId>
+               <artifactId>lombok</artifactId>
+               <version>${lombok.version}</version>
            </dependency>
            <!--mapstruct-->
            <dependency>
@@ -112,6 +128,6 @@
                <version>${mapstruct.version}</version>
            </dependency>
        </dependencies>
-       </dependencyManagement>
+    </dependencyManagement>
 
 </project>

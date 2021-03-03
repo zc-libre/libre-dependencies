@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * 多线程中传递 context 和 mdc
  *
- * @author L.cm
+ * @author zhao.cheng
  */
 public class RunnableWrapper implements Runnable {
 	private final Runnable delegate;

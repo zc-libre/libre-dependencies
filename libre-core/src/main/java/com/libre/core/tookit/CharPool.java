@@ -5,7 +5,7 @@ package com.libre.core.tookit;
 /**
  * char 常量池
  *
- * @author L.cm
+
  */
 public interface CharPool {
 	// @formatter:off

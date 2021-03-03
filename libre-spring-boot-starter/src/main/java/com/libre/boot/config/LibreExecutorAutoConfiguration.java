@@ -19,7 +19,6 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @author zhao.cheng
  * @date 2021/3/3 10:45
  */
-
 @EnableAsync
 @EnableScheduling
 @Configuration(proxyBeanMethods = false)

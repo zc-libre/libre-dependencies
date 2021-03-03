@@ -1,7 +1,5 @@
 package com.libre.boot.xss;
 
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
-
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
