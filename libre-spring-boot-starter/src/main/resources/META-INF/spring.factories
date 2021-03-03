@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.libre.boot.config.LibreWebMvcAutoConfiguration,\
+com.libre.boot.config.LibreBootAutoConfiguration,\
+com.libre.boot.config.LibreJacksonAutoConfiguration,\
+com.libre.boot.config.LibreExecutorAutoConfiguration

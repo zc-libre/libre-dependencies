@@ -8,8 +8,9 @@
     <version>1.0.0</version>
     <modules>
         <module>libre-bom</module>
-        <module>libre-security-starter</module>
-        <module>libre-tool</module>
+        <module>libre-core</module>
+        <module>libre-redis-spring-boot-starter</module>
+        <module>libre-spring-boot-starter</module>
     </modules>
     <packaging>pom</packaging>
 
