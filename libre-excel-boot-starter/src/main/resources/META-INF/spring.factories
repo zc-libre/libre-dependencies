@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.libre.excel.ExcelHandlerConfiguration,\
+  com.libre.excel.ResponseExcelAutoConfiguration
