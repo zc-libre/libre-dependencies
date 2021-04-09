@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * 受检的 Callable
  *
-
+ * @author zhao.cheng
  */
 @FunctionalInterface
 public interface CheckedCallable<T> extends Serializable {

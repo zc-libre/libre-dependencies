@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 受检的 Comparator
  *
-
+ * @author zhao.cheng
  */
 @FunctionalInterface
 public interface CheckedComparator<T> extends Serializable {
