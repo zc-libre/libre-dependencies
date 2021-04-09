@@ -1,7 +1,7 @@
 package com.libre.boot.xss;
 
 import com.libre.boot.prop.XssProperties;
-import com.libre.core.tookit.StringPool;
+import com.libre.core.toolkit.StringPool;
 
 
 import javax.servlet.*;

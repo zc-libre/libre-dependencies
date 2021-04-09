@@ -1,6 +1,6 @@
 package com.libre.boot.xss;
 
-import com.libre.core.tookit.WebUtil;
+import com.libre.core.toolkit.WebUtil;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 

@@ -1,9 +1,6 @@
-
-
 package com.libre.core.function;
 
 import org.springframework.lang.Nullable;
-
 import java.io.Serializable;
 
 /**

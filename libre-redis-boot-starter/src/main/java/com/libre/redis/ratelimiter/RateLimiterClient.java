@@ -2,7 +2,7 @@ package com.libre.redis.ratelimiter;
 
 
 import com.libre.core.function.CheckedSupplier;
-import com.libre.core.tookit.Exceptions;
+import com.libre.core.toolkit.Exceptions;
 
 import java.util.concurrent.TimeUnit;
 
