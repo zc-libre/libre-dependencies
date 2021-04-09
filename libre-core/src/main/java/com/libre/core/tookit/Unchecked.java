@@ -13,13 +13,11 @@ import java.util.function.Supplier;
 
 /**
  * Lambda 受检异常处理
- *
  * <p>
  * https://segmentfault.com/a/1190000007832130
  * https://github.com/jOOQ/jOOL
  * </p>
- *
-
+ * @author zhao.cheng
  */
 @UtilityClass
 public class Unchecked {

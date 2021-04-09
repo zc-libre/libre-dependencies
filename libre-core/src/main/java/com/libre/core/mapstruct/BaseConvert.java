@@ -19,7 +19,7 @@ public interface BaseConvert<SOURCE, TARGET> {
      * @param source /
      * @return /
      */
-      TARGET sourceToTarget(SOURCE source);
+    TARGET sourceToTarget(SOURCE source);
 
     /**
      * 反向，映射同名属性

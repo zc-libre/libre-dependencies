@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.libre</groupId>
-    <artifactId>libre-dependencies</artifactId>
+    <artifactId>libre-dependencies-parent</artifactId>
     <version>1.0.0</version>
     <modules>
         <module>libre-dependencies</module>
@@ -15,6 +15,7 @@
         <module>libre-excel-boot-starter</module>
         <module>libre-cloud-boot-starter</module>
         <module>libre-security-boot-starter</module>
+        <module>libre-mybatis-boot-starter</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -52,7 +53,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
             <dependency>
                 <groupId>com.libre.platform</groupId>
                 <artifactId>libre-dependencies</artifactId>
@@ -116,7 +116,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Javadoc -->
+<!--            &lt;!&ndash; Javadoc &ndash;&gt;
           <!--  <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
