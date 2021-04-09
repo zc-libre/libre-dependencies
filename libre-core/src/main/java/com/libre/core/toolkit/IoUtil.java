@@ -1,6 +1,6 @@
 
 
-package com.libre.core.tookit;
+package com.libre.core.toolkit;
 
 import com.google.common.base.Charsets;
 import org.springframework.lang.Nullable;
