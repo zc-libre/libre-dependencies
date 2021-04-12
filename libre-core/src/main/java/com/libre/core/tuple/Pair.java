@@ -9,7 +9,6 @@ import lombok.ToString;
 /**
  * tuple Pair
  *
-
  **/
 @Getter
 @ToString
