@@ -166,4 +166,11 @@
        </dependencies>
     </dependencyManagement>
 
+	<distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<name>central repository</name>
+			<url>http://172.17.30.61:8081/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
 </project>
