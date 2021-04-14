@@ -24,6 +24,7 @@ import java.util.List;
 
  */
 @UtilityClass
+@SuppressWarnings("rawtypes")
 public class ReflectUtil extends ReflectionUtils {
 
 	/**
@@ -233,7 +234,6 @@ public class ReflectUtil extends ReflectionUtils {
 
 	/**
 	 * 重写 invokeMethod 的方法，用于处理 setAccessible 的问题
-	 *
 	 * @param method Method
 	 * @param target Object
 	 * @param args   args

@@ -8,8 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 限流异常
- *
-
  */
 @Getter
 public class RateLimiterException extends RuntimeException {

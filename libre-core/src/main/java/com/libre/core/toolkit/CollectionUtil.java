@@ -9,7 +9,7 @@ import java.util.Map;
  * @author zhao.cheng
  * @date 2021/3/3 12:39
  */
-public class CollectionUtil  extends CollUtil{
+public class CollectionUtil  extends CollUtil {
 
     /**
      * 将key value 数组转为 map
@@ -19,6 +19,7 @@ public class CollectionUtil  extends CollUtil{
      * @param <V>        value
      * @return map 集合
      */
+    @SuppressWarnings("unchecked")
     public static <K, V> Map<K, V> toGenericMap(Object... keysValues) {
         int kvLength = keysValues.length;
         if (kvLength % 2 != 0) {
