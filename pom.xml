@@ -26,6 +26,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <spring.cloud.version>Hoxton.SR8</spring.cloud.version>
+		<spring.cloud.alibaba.version>2.2.5.RELEASE</spring.cloud.alibaba.version>
         <spring.boot.version>2.3.2.RELEASE</spring.boot.version>
         <spring.platform.version>Cairo-SR8</spring.platform.version>
     </properties>
@@ -46,6 +47,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+			<dependency>
+				<groupId>com.alibaba.cloud</groupId>
+				<artifactId>spring-cloud-alibaba-dependencies</artifactId>
+				<version>${spring.cloud.alibaba.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
@@ -70,6 +78,7 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>${project.name}</finalName>
         <resources>
@@ -107,6 +116,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -118,6 +128,7 @@
             </plugin>
         </plugins>
     </build>
+
     <profiles>
         <profile>
             <id>develop</id>
@@ -144,4 +155,20 @@
             </build>
         </profile>
     </profiles>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>https://maven.aliyun.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+
 </project>
