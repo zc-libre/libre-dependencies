@@ -9,7 +9,6 @@ import java.io.Serializable;
 /**
  * 受检的 function
  *
-
  */
 @FunctionalInterface
 public interface CheckedFunction<T, R> extends Serializable {

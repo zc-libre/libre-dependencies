@@ -1,15 +1,10 @@
-
-
 package com.libre.core.function;
 
 import org.springframework.lang.Nullable;
-
 import java.io.Serializable;
 
 /**
  * 受检的 Supplier
- *
-
  */
 @FunctionalInterface
 public interface CheckedSupplier<T> extends Serializable {
