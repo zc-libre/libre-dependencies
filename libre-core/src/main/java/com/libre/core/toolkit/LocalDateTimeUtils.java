@@ -2,10 +2,12 @@ package com.libre.core.toolkit;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Objects;
 
 /**
  * @author zhao.cheng
@@ -61,4 +63,35 @@ public class LocalDateTimeUtils extends LocalDateTimeUtil {
     public static LocalDateTime endOfToDay() {
         return endOfDay(LocalDateTime.now());
     }
+
+	/**
+	 * 判断是否是周末
+	 * @param localDateTime /
+	 * @return /
+	 */
+	public static boolean isWeekend(LocalDateTime localDateTime) {
+		if (Objects.isNull(localDateTime)) {
+			return false;
+		}
+		DayOfWeek week = localDateTime.getDayOfWeek();
+		return week == DayOfWeek.SATURDAY || week == DayOfWeek.SUNDAY;
+	}
+
+	/**
+	 * 获取指定时间的周一
+	 * @param time /
+	 * @return /
+	 */
+	public static LocalDateTime beginOfWeek(LocalDateTime time) {
+		return LocalDateTime.of(time.toLocalDate(), LocalTime.MIN).with(DayOfWeek.MONDAY);
+	}
+
+	/**
+	 * 获取指定时间的周末
+	 * @param time /
+	 * @return /
+	 */
+	public static LocalDateTime endOfWeek(LocalDateTime time) {
+		return LocalDateTime.of(time.toLocalDate(), LocalTime.MAX).with(DayOfWeek.SUNDAY);
+	}
 }
