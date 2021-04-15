@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.type.CollectionLikeType;
 import com.fasterxml.jackson.databind.type.MapType;
+import com.libre.core.jackson.LibreJavaTimeModule;
 import org.springframework.lang.Nullable;
 
 import java.io.IOException;
@@ -658,6 +659,7 @@ public class JsonUtil {
 		JacksonObjectMapper() {
 			super(jsonFactory());
 			super.setLocale(CHINA);
+			super.registerModule(LibreJavaTimeModule.INSTANCE);
 			super.setDateFormat(new SimpleDateFormat(DatePattern.NORM_DATETIME_PATTERN, CHINA));
 			// 单引号
 			super.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
