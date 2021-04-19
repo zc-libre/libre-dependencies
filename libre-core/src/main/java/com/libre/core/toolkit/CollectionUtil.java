@@ -1,5 +1,6 @@
 package com.libre.core.toolkit;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 
 import java.util.HashMap;

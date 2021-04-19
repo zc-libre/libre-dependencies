@@ -1,5 +1,8 @@
 package com.libre.core.toolkit;
 
+import cn.hutool.core.date.format.FastDatePrinter;
+import cn.hutool.core.io.FastStringWriter;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.UndeclaredThrowableException;
 
@@ -62,5 +65,17 @@ public class Exceptions {
                 return unwrapped;
             }
         }
+    }
+
+    /**
+     * 将ErrorStack转化为String.
+     *
+     * @param ex Throwable
+     * @return {String}
+     */
+    public static String getStackTraceAsString(Throwable ex) {
+        FastStringPrintWriter printWriter = new FastStringPrintWriter(512);
+        ex.printStackTrace(printWriter);
+        return printWriter.toString();
     }
 }

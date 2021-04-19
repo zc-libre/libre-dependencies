@@ -4,6 +4,8 @@ import com.libre.boot.executor.RunnableWrapper;
 import com.libre.boot.prop.LibreExecutorProperties;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +25,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableScheduling
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(LibreExecutorProperties.class)
+@AutoConfigureBefore(TaskExecutionAutoConfiguration.class)
 public class LibreExecutorAutoConfiguration extends AsyncConfigurerSupport {
 
     private final LibreExecutorProperties properties;
@@ -31,8 +34,8 @@ public class LibreExecutorAutoConfiguration extends AsyncConfigurerSupport {
         this.properties = properties;
     }
 
+    @Bean("asyncExecutor")
     @Override
-    @Bean(name = "taskExecutor")
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(properties.getCorePoolSize());

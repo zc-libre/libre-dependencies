@@ -1,16 +1,13 @@
 package com.libre.mybatis.toolkit;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
+import cn.hutool.extra.cglib.CglibUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.util.Assert;
-import org.springframework.util.ObjectUtils;
 
-import javax.print.DocFlavor;
+import com.libre.core.convert.MicaConverter;
+import org.springframework.util.ObjectUtils;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 
 /**
@@ -19,15 +16,19 @@ import java.util.function.Function;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class PageUtil {
 
+
     public static <T> Page<T> toPage(IPage<?> page, Class<T> target) {
         if (ObjectUtils.isEmpty(page)) {
             return null;
         }
-        List<T> records = new ArrayList<>();
-        Assert.notNull(page.getRecords(), "pages must not be null!");
-        for (Object record : page.getRecords()) {
-            records.add((T) record);
+        T t = null;
+        try {
+            t = target.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
         }
+        T finalT = t;
+        List<T> records = CglibUtil.copyList(page.getRecords(), () -> finalT);
         return toPage(page, records);
     }
 

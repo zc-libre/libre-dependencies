@@ -3,6 +3,7 @@ package com.libre.boot.exception;
 import com.libre.core.result.R;
 import com.libre.core.result.ResultCode;
 import com.libre.core.toolkit.StringUtil;
+import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -45,99 +46,102 @@ public class GlobalExceptionHandler {
 
     public static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    /**
-     * 处理所有不可知的异常
-     */
-    @ExceptionHandler(Throwable.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public R handleException(Throwable e){
-        // 打印堆栈信息
-        e.printStackTrace();
-        return R.fail(ResultCode.FAILURE, e.getMessage());
-    }
-
     @ExceptionHandler(MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public R handleError(MissingServletRequestParameterException e) {
-        log.warn("缺少请求参数{}", e.getMessage());
+    public R<Object> handleError(MissingServletRequestParameterException e) {
+        log.warn("缺少请求参数:{}", e.getMessage());
         String message = String.format("缺少必要的请求参数: %s", e.getParameterName());
         return R.fail(ResultCode.PARAM_MISS, message);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public R handleError(MethodArgumentTypeMismatchException e) {
-        log.warn("请求参数格式错误{}", e.getMessage());
+    public R<Object> handleError(MethodArgumentTypeMismatchException e) {
+        log.warn("请求参数格式错误:{}", e.getMessage());
         String message = String.format("请求参数格式错误: %s", e.getName());
         return R.fail(ResultCode.PARAM_TYPE_ERROR, message);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public R handleError(MethodArgumentNotValidException e) {
-        log.warn("参数验证失败{}", e.getMessage());
+    public R<Object> handleError(MethodArgumentNotValidException e) {
+        log.warn("参数验证失败:{}", e.getMessage());
         return handleError(e.getBindingResult());
     }
 
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public R handleError(BindException e) {
-        log.warn("参数绑定失败{}", e.getMessage());
+    public R<Object> handleError(BindException e) {
+        log.warn("参数绑定失败:{}", e.getMessage());
         return handleError(e.getBindingResult());
-    }
-
-    private R handleError(BindingResult result) {
-        FieldError error = result.getFieldError();
-        String message = String.format("%s:%s", error.getField(), error.getDefaultMessage());
-        return R.fail(ResultCode.PARAM_BIND_ERROR, message);
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public R handleError(ConstraintViolationException e) {
-        log.warn("参数验证失败{}", e.getMessage());
-        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-        ConstraintViolation<?> violation = violations.iterator().next();
-        String path =  violation.getPropertyPath().toString();
-        String message = String.format("%s:%s", path, violation.getMessage());
-        return R.fail(ResultCode.PARAM_VALID_ERROR, message);
+    public R<Object> handleError(ConstraintViolationException e) {
+        log.warn("参数验证失败:{}", e.getMessage());
+        return handleError(e.getConstraintViolations());
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public R handleError(NoHandlerFoundException e) {
+    public R<Object> handleError(NoHandlerFoundException e) {
         log.error("404没找到请求:{}", e.getMessage());
         return R.fail(ResultCode.NOT_FOUND, e.getMessage());
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public R handleError(HttpMessageNotReadableException e) {
+    public R<Object> handleError(HttpMessageNotReadableException e) {
         log.error("消息不能读取:{}", e.getMessage());
         return R.fail(ResultCode.MSG_NOT_READABLE, e.getMessage());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
-    public R handleError(HttpRequestMethodNotSupportedException e) {
+    public R<Object> handleError(HttpRequestMethodNotSupportedException e) {
         log.error("不支持当前请求方法:{}", e.getMessage());
         return R.fail(ResultCode.METHOD_NOT_SUPPORTED, e.getMessage());
     }
 
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-    public R handleError(HttpMediaTypeNotSupportedException e) {
+    public R<Object> handleError(HttpMediaTypeNotSupportedException e) {
         log.error("不支持当前媒体类型:{}", e.getMessage());
         return R.fail(ResultCode.MEDIA_TYPE_NOT_SUPPORTED, e.getMessage());
     }
 
     @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
     @ResponseStatus(HttpStatus.UNSUPPORTED_MEDIA_TYPE)
-    public R handleError(HttpMediaTypeNotAcceptableException e) {
+    public R<Object> handleError(HttpMediaTypeNotAcceptableException e) {
         String message = e.getMessage() + " " + StringUtil.join(e.getSupportedMediaTypes());
         log.error("不接受的媒体类型:{}", message);
         return R.fail(ResultCode.MEDIA_TYPE_NOT_SUPPORTED, message);
     }
 
+    /**
+     * 处理 BindingResult
+     *
+     * @param result BindingResult
+     * @return R
+     */
+    private static R<Object> handleError(BindingResult result) {
+        FieldError error = result.getFieldError();
+        String message = String.format("%s:%s", error.getField(), error.getDefaultMessage());
+        return R.fail(ResultCode.PARAM_BIND_ERROR, message);
+    }
+
+    /**
+     * 处理 ConstraintViolation
+     *
+     * @param violations 校验结果
+     * @return R
+     */
+    private static R<Object> handleError(Set<ConstraintViolation<?>> violations) {
+        ConstraintViolation<?> violation = violations.iterator().next();
+        String path = ((PathImpl) violation.getPropertyPath()).getLeafNode().getName();
+        String message = String.format("%s:%s", path, violation.getMessage());
+        return R.fail(ResultCode.PARAM_VALID_ERROR, message);
+    }
 
 }

@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 
 /**
@@ -203,9 +204,31 @@ public class WebUtil extends org.springframework.web.util.WebUtils {
 		}
 		return sb.toString();
 	}
+	private static final Predicate<String> IS_BLANK_IP = (ip) -> StringUtil.isBlank(ip) || StringPool.UNKNOWN.equalsIgnoreCase(ip);
 
-
-
+	/**
+	 * 获取ip
+	 *
+	 * @param request HttpServletRequest
+	 * @return {String}
+	 */
+	@Nullable
+	public static String getIP(@Nullable HttpServletRequest request) {
+		if (request == null) {
+			return null;
+		}
+		String ip = null;
+		for (String ipHeader : IP_HEADER_NAMES) {
+			ip = request.getHeader(ipHeader);
+			if (!IS_BLANK_IP.test(ip)) {
+				break;
+			}
+		}
+		if (IS_BLANK_IP.test(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		return StringUtil.isBlank(ip) ? null : StringUtil.splitTrim(ip, StringPool.COMMA)[0];
+	}
 
 }
 

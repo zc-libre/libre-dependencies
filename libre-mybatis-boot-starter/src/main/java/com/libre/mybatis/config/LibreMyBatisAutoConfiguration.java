@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.inner.InnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.libre.mybatis.prop.LibreMyBatisProperties;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -26,11 +27,12 @@ public class LibreMyBatisAutoConfiguration {
 	 */
 	@Bean
 	@ConditionalOnMissingBean
-	public PaginationInnerInterceptor mybatisPlusInterceptor(LibreMyBatisProperties properties) {
+	public PaginationInnerInterceptor paginationInnerInterceptor(LibreMyBatisProperties properties) {
 		PaginationInnerInterceptor interceptor = new PaginationInnerInterceptor(properties.getDbType());
 		interceptor.setOverflow(properties.getOverflow());
 		interceptor.setMaxLimit(properties.getMaxLimit());
 		return interceptor;
+
 	}
 
 	@Bean
@@ -41,11 +43,10 @@ public class LibreMyBatisAutoConfiguration {
 
 
 	@Bean
+	@ConditionalOnMissingBean
 	public MybatisPlusInterceptor mybatisPlusInterceptor(ObjectProvider<List<InnerInterceptor>> listObjectProvider) {
 		MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-		listObjectProvider.ifAvailable((interceptorList) -> {
-			interceptorList.forEach(interceptor::addInnerInterceptor);
-		});
+		listObjectProvider.ifAvailable((interceptorList) -> interceptorList.forEach(interceptor::addInnerInterceptor));
 		return interceptor;
 	}
 }

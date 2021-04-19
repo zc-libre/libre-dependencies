@@ -1,43 +1,62 @@
 package com.libre.boot.exception;
 
+
 import com.libre.core.result.IResultCode;
-import com.libre.core.result.ResultCode;
-import lombok.Getter;
-
-
+import com.libre.core.result.R;
+import org.springframework.lang.Nullable;
 
 /**
  * 业务异常
- * @author zhao.cheng
+ *
+ * @author L.cm
  */
 public class ServiceException extends RuntimeException {
 	private static final long serialVersionUID = 2359767895161832954L;
 
-	@Getter
-	private final IResultCode resultCode;
+	@Nullable
+	private final R<?> result;
+
+	public ServiceException(R<?> result) {
+		super(result.getMsg());
+		this.result = result;
+	}
+
+	public ServiceException(IResultCode rCode) {
+		this(rCode, rCode.getMessage());
+	}
+
+	public ServiceException(IResultCode rCode, String message) {
+		super(message);
+		this.result = R.fail(rCode, message);
+	}
 
 	public ServiceException(String message) {
 		super(message);
-		this.resultCode = ResultCode.FAILURE;
+		this.result = null;
 	}
 
-	public ServiceException(IResultCode resultCode) {
-		super(resultCode.getMessage());
-		this.resultCode = resultCode;
+	public ServiceException(Throwable cause) {
+		this(cause.getMessage(), cause);
 	}
 
-	public ServiceException(IResultCode resultCode, Throwable cause) {
-		super(cause);
-		this.resultCode = resultCode;
+	public ServiceException(String message, Throwable cause) {
+		super(message, cause);
+		doFillInStackTrace();
+		this.result = null;
+	}
+
+	@Nullable
+	@SuppressWarnings("unchecked")
+	public <T> R<T> getResult() {
+		return (R<T>) result;
 	}
 
 	/**
 	 * 提高性能
-	 *
 	 * @return Throwable
 	 */
 	@Override
-	public Throwable fillInStackTrace() {
+	public synchronized Throwable fillInStackTrace() {
 		return this;
 	}
 

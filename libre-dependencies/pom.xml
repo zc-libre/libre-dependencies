@@ -28,7 +28,7 @@
         <protostuff.version>1.6.0</protostuff.version>
         <logstash.version>6.2</logstash.version>
         <jasypt.version>3.0.3</jasypt.version>
-        <hutool.version>5.3.10</hutool.version>
+        <hutool.version>5.6.3</hutool.version>
         <guava.version>29.0-jre</guava.version>
         <justAuth.version>1.15.6</justAuth.version>
         <swagger.version>3.0.0</swagger.version>
@@ -39,6 +39,7 @@
         <jsoup.version>1.12.1</jsoup.version>
 		<easyexcel.version>2.2.6</easyexcel.version>
 		<poi.version>4.0.1</poi.version>
+        <cglib.version>3.3.0</cglib.version>
     </properties>
 
     <dependencyManagement>
@@ -56,6 +57,16 @@
            <dependency>
                <groupId>com.libre</groupId>
                <artifactId>libre-redis-boot-starter</artifactId>
+               <version>${libre.dependencies.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>com.libre</groupId>
+               <artifactId>libre-mybatis-boot-starter</artifactId>
+               <version>${libre.dependencies.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>com.libre</groupId>
+               <artifactId>libre-excel-boot-starter</artifactId>
                <version>${libre.dependencies.version}</version>
            </dependency>
            <dependency>
@@ -142,6 +153,13 @@
 			   <artifactId>poi-ooxml-schemas</artifactId>
 			   <version>${poi.version}</version>
 		   </dependency>
+
+           <dependency>
+               <groupId>cglib</groupId>
+               <artifactId>cglib</artifactId>
+               <version>${cglib.version}</version>
+           </dependency>
+
            <dependency>
                <groupId>org.projectlombok</groupId>
                <artifactId>lombok</artifactId>

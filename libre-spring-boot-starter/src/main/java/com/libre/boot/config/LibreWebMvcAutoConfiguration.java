@@ -4,6 +4,8 @@ import cn.hutool.core.date.DatePattern;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.libre.boot.jackson.MappingApiJackson2HttpMessageConverter;
 import com.libre.boot.prop.LibreJacksonProperties;
+import com.libre.boot.upload.UploadFileProperties;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +19,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.nio.charset.StandardCharsets;
@@ -29,17 +32,13 @@ import java.util.List;
  */
 @EnableWebMvc
 @Configuration(proxyBeanMethods = false)
-@EnableConfigurationProperties(LibreJacksonProperties.class)
+@EnableConfigurationProperties({LibreJacksonProperties.class, UploadFileProperties.class})
+@RequiredArgsConstructor
 public class LibreWebMvcAutoConfiguration implements WebMvcConfigurer {
 
     private final ObjectMapper objectMapper;
-    private final LibreJacksonProperties properties;
-
-    public LibreWebMvcAutoConfiguration(ObjectMapper objectMapper,
-                                        LibreJacksonProperties properties) {
-        this.objectMapper = objectMapper;
-        this.properties = properties;
-    }
+    private final LibreJacksonProperties jacksonProperties;
+    private final UploadFileProperties uploadFileProperties;
 
     @Bean
     @ConditionalOnMissingBean
@@ -61,7 +60,7 @@ public class LibreWebMvcAutoConfiguration implements WebMvcConfigurer {
         converters.add(new ByteArrayHttpMessageConverter());
         converters.add(new ResourceHttpMessageConverter());
         converters.add(new ResourceRegionHttpMessageConverter());
-        converters.add(new MappingApiJackson2HttpMessageConverter(objectMapper, properties));
+        converters.add(new MappingApiJackson2HttpMessageConverter(objectMapper, jacksonProperties));
     }
 
     @Override
@@ -71,5 +70,12 @@ public class LibreWebMvcAutoConfiguration implements WebMvcConfigurer {
         registrar.setDateFormatter(DateTimeFormatter.ofPattern(DatePattern.NORM_DATE_PATTERN));
         registrar.setDateTimeFormatter(DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN));
         registrar.registerFormatters(registry);
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        String path = uploadFileProperties.getSavePath();
+        registry.addResourceHandler(uploadFileProperties.getUploadPathPattern())
+                .addResourceLocations("file:" + path + "/");
     }
 }

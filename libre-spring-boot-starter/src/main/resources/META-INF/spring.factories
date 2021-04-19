@@ -1,6 +1,9 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.libre.boot.config.LibreWebMvcAutoConfiguration,\
-com.libre.boot.config.LibreBootAutoConfiguration,\
-com.libre.boot.config.LibreJacksonAutoConfiguration,\
-com.libre.boot.config.LibreExecutorAutoConfiguration,\
-com.libre.boot.exception.GlobalExceptionHandler
+  com.libre.boot.config.LibreWebMvcAutoConfiguration,\
+  com.libre.boot.config.LibreBootAutoConfiguration,\
+  com.libre.boot.config.LibreJacksonAutoConfiguration,\
+  com.libre.boot.config.LibreExecutorAutoConfiguration,\
+  com.libre.boot.exception.GlobalExceptionHandler,\
+  com.libre.boot.config.LibreErrorAutoConfiguration,\
+  com.libre.boot.exception.GlobalExceptionTranslator
+
