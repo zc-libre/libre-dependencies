@@ -4,7 +4,6 @@ import org.mapstruct.InheritConfiguration;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.MapperConfig;
 
-
 import java.util.List;
 import java.util.stream.Stream;
 
