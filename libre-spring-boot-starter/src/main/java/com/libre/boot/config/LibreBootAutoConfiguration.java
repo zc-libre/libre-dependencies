@@ -2,6 +2,7 @@ package com.libre.boot.config;
 
 import com.libre.boot.prop.XssProperties;
 import com.libre.boot.xss.RequestFilter;
+import com.libre.core.toolkit.SpringUtils;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -27,5 +28,10 @@ public class LibreBootAutoConfiguration {
         registration.setName("LibreRequestFilter");
         registration.setOrder(Ordered.LOWEST_PRECEDENCE);
         return registration;
+    }
+
+    @Bean
+    public SpringUtils springUtils() {
+        return new SpringUtils();
     }
 }

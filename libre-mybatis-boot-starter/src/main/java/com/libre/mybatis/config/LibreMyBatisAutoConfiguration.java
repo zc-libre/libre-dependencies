@@ -1,11 +1,9 @@
 package com.libre.mybatis.config;
 
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.InnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.*;
 import com.libre.mybatis.prop.LibreMyBatisProperties;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -43,10 +41,16 @@ public class LibreMyBatisAutoConfiguration {
 
 
 	@Bean
-	@ConditionalOnMissingBean
 	public MybatisPlusInterceptor mybatisPlusInterceptor(ObjectProvider<List<InnerInterceptor>> listObjectProvider) {
 		MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-		listObjectProvider.ifAvailable((interceptorList) -> interceptorList.forEach(interceptor::addInnerInterceptor));
+		listObjectProvider.ifAvailable((interceptorList) -> {
+			interceptorList.forEach(interceptor::addInnerInterceptor);
+		});
 		return interceptor;
+	}
+
+	@Bean
+	public ConfigurationCustomizer configurationCustomizer() {
+		return configuration -> configuration.setUseDeprecatedExecutor(false);
 	}
 }
