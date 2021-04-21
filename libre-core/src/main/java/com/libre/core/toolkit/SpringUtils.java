@@ -1,4 +1,4 @@
-package com.libre.boot.toolkit;
+package com.libre.core.toolkit;
 
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.BeansException;
