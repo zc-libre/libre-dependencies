@@ -139,6 +139,7 @@ public class INetUtil {
 		try (ServerSocket ignore = new ServerSocket(port)) {
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace(new FastStringPrintWriter());
 			return false;
 		}
 	}

@@ -2,8 +2,9 @@ package com.libre.redis.cache;
 
 import com.libre.core.toolkit.StringPool;
 import com.libre.core.toolkit.StringUtil;
+import org.springframework.lang.Nullable;
 import org.springframework.util.ObjectUtils;
-import javax.annotation.Nullable;
+
 import java.time.Duration;
 
 /**

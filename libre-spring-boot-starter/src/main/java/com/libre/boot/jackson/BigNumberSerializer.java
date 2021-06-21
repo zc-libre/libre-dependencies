@@ -26,7 +26,7 @@ public class BigNumberSerializer extends NumberSerializer {
 	/**
 	 * Static instance that is only to be used for {@link Number}.
 	 */
-	public final static BigNumberSerializer INSTANCE = new BigNumberSerializer(Number.class);
+	public static final  BigNumberSerializer INSTANCE = new BigNumberSerializer(Number.class);
 
 	public BigNumberSerializer(Class<? extends Number> rawType) {
 		super(rawType);

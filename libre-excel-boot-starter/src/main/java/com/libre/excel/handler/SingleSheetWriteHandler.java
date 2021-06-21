@@ -24,6 +24,7 @@ import java.util.List;
 @SuppressWarnings("rawtypes")
 @RequiredArgsConstructor
 public class SingleSheetWriteHandler extends AbstractSheetWriteHandler {
+
 	private final ExcelConfigProperties configProperties;
 	private final ObjectProvider<List<Converter<?>>> converterProvider;
 

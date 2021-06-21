@@ -39,19 +39,19 @@ public abstract class AbstractReadWriteJackson2HttpMessageConverter extends Abst
 	@Nullable
 	private PrettyPrinter ssePrettyPrinter;
 
-	public AbstractReadWriteJackson2HttpMessageConverter(ObjectMapper readObjectMapper, ObjectMapper writeObjectMapper) {
+	protected AbstractReadWriteJackson2HttpMessageConverter(ObjectMapper readObjectMapper, ObjectMapper writeObjectMapper) {
 		super(readObjectMapper);
 		this.writeObjectMapper = writeObjectMapper;
 		initSsePrettyPrinter();
 	}
 
-	public AbstractReadWriteJackson2HttpMessageConverter(ObjectMapper readObjectMapper, ObjectMapper writeObjectMapper, MediaType supportedMediaType) {
+	protected AbstractReadWriteJackson2HttpMessageConverter(ObjectMapper readObjectMapper, ObjectMapper writeObjectMapper, MediaType supportedMediaType) {
 		this(readObjectMapper, writeObjectMapper);
 		setSupportedMediaTypes(Collections.singletonList(supportedMediaType));
 		initSsePrettyPrinter();
 	}
 
-	public AbstractReadWriteJackson2HttpMessageConverter(ObjectMapper readObjectMapper, ObjectMapper writeObjectMapper, List<MediaType> supportedMediaTypes) {
+	protected AbstractReadWriteJackson2HttpMessageConverter(ObjectMapper readObjectMapper, ObjectMapper writeObjectMapper, List<MediaType> supportedMediaTypes) {
 		this(readObjectMapper, writeObjectMapper);
 		setSupportedMediaTypes(supportedMediaTypes);
 	}

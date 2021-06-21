@@ -1,5 +1,6 @@
 package com.libre.core.toolkit;
 
+import lombok.experimental.UtilityClass;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Element;
@@ -14,8 +15,10 @@ import org.springframework.util.StringUtils;
  *
  * @author zhao.cheng
  */
+@UtilityClass
 public class XssUtil {
-	private static final HtmlWhitelist WHITE_LIST = new HtmlWhitelist();
+
+	public static final HtmlWhitelist WHITE_LIST = new HtmlWhitelist();
 
 	/**
 	 * xss 清理

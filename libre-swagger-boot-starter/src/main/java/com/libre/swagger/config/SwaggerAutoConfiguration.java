@@ -46,13 +46,13 @@ public class SwaggerAutoConfiguration {
                 .paths(PathSelectors.any())
                 .build();
         // 如果开启 apiKey 认证
-        if (properties.getAuthorization().getEnabled()) {
+        if (Boolean.TRUE.equals(properties.getAuthorization().getEnabled())) {
             SwaggerProperties.Authorization authorization = properties.getAuthorization();
             docket.securitySchemes(Collections.singletonList(apiKey(authorization)));
             docket.securityContexts(Collections.singletonList(apiKeySecurityContext(authorization)));
         }
         // 如果开启 oauth2 认证
-        if (properties.getOauth2().getEnabled()) {
+        if (Boolean.TRUE.equals(properties.getOauth2().getEnabled())) {
             SwaggerProperties.Oauth2 oauth2 = properties.getOauth2();
             docket.securitySchemes(Collections.singletonList(oauth2(oauth2)));
             docket.securityContexts(Collections.singletonList(oauth2SecurityContext(oauth2)));
@@ -82,7 +82,7 @@ public class SwaggerAutoConfiguration {
         }
         return SecurityContext.builder()
                 .securityReferences(apiKeyAuth(authorization))
-                .operationSelector((context) -> {
+                .operationSelector(context -> {
                     String mappingPattern = context.requestMappingPattern();
                     return pathPatterns.stream().anyMatch(patterns -> matcher.match(patterns, mappingPattern));
                 })
@@ -145,7 +145,7 @@ public class SwaggerAutoConfiguration {
         final AntPathMatcher matcher = new AntPathMatcher();
         return SecurityContext.builder()
                 .securityReferences(Collections.singletonList(securityReference))
-                .operationSelector((context) -> {
+                .operationSelector(context -> {
                     String mappingPattern = context.requestMappingPattern();
                     return pathPatterns.stream().anyMatch(patterns -> matcher.match(patterns, mappingPattern));
                 })

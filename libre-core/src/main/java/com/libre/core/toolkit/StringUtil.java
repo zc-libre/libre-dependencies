@@ -21,11 +21,11 @@ import java.util.stream.Stream;
  * @author zhao.cheng
  */
 public class StringUtil extends StringUtils {
-	private StringUtil(){};
+	private StringUtil(){}
 	/**
 	 * 特殊字符正则，sql特殊字符和空白符
 	 */
-	private final static Pattern SPECIAL_CHARS_REGEX = Pattern.compile("[`'\"|/,;()-+*%#·•�　\\s]");
+	private static final Pattern SPECIAL_CHARS_REGEX = Pattern.compile("[`'\"|/,;()-+*%#·•�　\\s]");
 	/**
 	 * <p>The maximum size to which the padding constant(s) can expand.</p>
 	 */
@@ -82,7 +82,7 @@ public class StringUtil extends StringUtils {
 	 * @see Character#isWhitespace
 	 */
 	public static boolean isBlank(@Nullable final CharSequence cs) {
-		return !StringUtil.hasText(cs);
+		return !StringUtils.hasText(cs);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class StringUtil extends StringUtils {
 	 * @see Character#isWhitespace
 	 */
 	public static boolean isNotBlank(@Nullable final CharSequence cs) {
-		return StringUtil.hasText(cs);
+		return StringUtils.hasText(cs);
 	}
 
 	/**

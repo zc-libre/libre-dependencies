@@ -2,7 +2,9 @@
 
 package com.libre.redis.config;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectMapper.DefaultTyping;
 import com.libre.redis.cache.RedisUtils;
@@ -62,6 +64,7 @@ public class RedisTemplateConfiguration {
 		// class type info to json
 		GenericJackson2JsonRedisSerializer.registerNullValueSerializer(objectMapper, null);
 		objectMapper.activateDefaultTyping(objectMapper.getPolymorphicTypeValidator(), DefaultTyping.NON_FINAL, As.PROPERTY);
+		objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
 		log.info("redis serializer-type: JSON");
 		return new GenericJackson2JsonRedisSerializer(objectMapper);
 	}

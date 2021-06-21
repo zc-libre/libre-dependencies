@@ -636,8 +636,6 @@ public class JsonUtil {
 	}
 
 
-
-
 	/**
 	 * 获取 ObjectMapper 实例
 	 *

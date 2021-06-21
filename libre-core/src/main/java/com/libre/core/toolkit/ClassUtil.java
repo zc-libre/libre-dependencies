@@ -7,6 +7,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.core.ParameterNameDiscoverer;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.core.annotation.SynthesizingMethodParameter;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.method.HandlerMethod;
 
 import java.lang.annotation.Annotation;
@@ -59,12 +60,11 @@ public class ClassUtil extends org.springframework.util.ClassUtils {
         Class<?> targetClass = method.getDeclaringClass();
         // The method may be on an interface, but we need attributes from the target class.
         // If the target class is null, the method will be unchanged.
-        Method specificMethod = ClassUtil.getMostSpecificMethod(method, targetClass);
+        Method specificMethod = ClassUtils.getMostSpecificMethod(method, targetClass);
         // If we are dealing with method with generic parameters, find the original method.
         specificMethod = BridgeMethodResolver.findBridgedMethod(specificMethod);
         // 先找方法，再找方法上的类
         A annotation = AnnotatedElementUtils.findMergedAnnotation(specificMethod, annotationType);
-        ;
         if (null != annotation) {
             return annotation;
         }

@@ -43,9 +43,7 @@ public class LibreMyBatisAutoConfiguration {
 	@Bean
 	public MybatisPlusInterceptor mybatisPlusInterceptor(ObjectProvider<List<InnerInterceptor>> listObjectProvider) {
 		MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-		listObjectProvider.ifAvailable((interceptorList) -> {
-			interceptorList.forEach(interceptor::addInnerInterceptor);
-		});
+		listObjectProvider.ifAvailable(interceptorList-> interceptorList.forEach(interceptor::addInnerInterceptor));
 		return interceptor;
 	}
 

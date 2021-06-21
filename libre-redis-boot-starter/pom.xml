@@ -4,27 +4,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>libre-dependencies-parent</artifactId>
-        <groupId>com.libre</groupId>
-        <version>1.0.0</version>
+        <groupId>com.zclibre</groupId>
+        <version>1.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>libre-redis-boot-starter</artifactId>
-    <packaging>jar</packaging>
+    <name>libre-redis-boot-starter</name>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.libre</groupId>
+            <groupId>com.zclibre</groupId>
             <artifactId>libre-core</artifactId>
+            <version>1.0.1</version>
         </dependency>
         <!-- protostuff -->
         <dependency>

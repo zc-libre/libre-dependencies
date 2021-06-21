@@ -3,7 +3,6 @@ package com.libre.core.toolkit;
 import cn.hutool.extra.cglib.CglibUtil;
 import lombok.experimental.UtilityClass;
 import net.sf.cglib.beans.BeanMap;
-import org.springframework.beans.BeanUtils;
 import org.springframework.objenesis.instantiator.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 

@@ -1,5 +1,6 @@
 package com.libre.redis.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.cache.CacheManagerCustomizers;
@@ -31,6 +32,7 @@ import java.util.Map;
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 @ConditionalOnBean(RedisConnectionFactory.class)
 @EnableConfigurationProperties(CacheProperties.class)
+@RequiredArgsConstructor
 public class LibreRedisCacheAutoConfiguration {
 	/**
 	 * 序列化方式
@@ -41,15 +43,6 @@ public class LibreRedisCacheAutoConfiguration {
 	@Nullable
 	private final RedisCacheConfiguration redisCacheConfiguration;
 
-	LibreRedisCacheAutoConfiguration(RedisSerializer<Object> redisSerializer,
-									 CacheProperties cacheProperties,
-									 CacheManagerCustomizers customizerInvoker,
-									 ObjectProvider<RedisCacheConfiguration> redisCacheConfiguration) {
-		this.redisSerializer = redisSerializer;
-		this.cacheProperties = cacheProperties;
-		this.customizerInvoker = customizerInvoker;
-		this.redisCacheConfiguration = redisCacheConfiguration.getIfAvailable();
-	}
 
 	@Primary
 	@Bean("redisCacheManager")

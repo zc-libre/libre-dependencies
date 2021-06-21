@@ -1,9 +1,6 @@
 package com.libre.swagger.prop;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
-import jdk.nashorn.internal.objects.annotations.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import springfox.documentation.service.AuthorizationScope;
 
 import java.util.ArrayList;
@@ -31,7 +28,7 @@ public class SwaggerProperties {
     /**
      * 版本号，默认：V1.0
      */
-    private String version = "1.0.0";
+    private String version = "1.0.1";
     /**
      * 组织名
      */

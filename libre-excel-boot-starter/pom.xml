@@ -4,12 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>libre-dependencies-parent</artifactId>
-        <groupId>com.libre</groupId>
-        <version>1.0.0</version>
+        <groupId>com.zclibre</groupId>
+        <version>1.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>libre-excel-boot-starter</artifactId>
+	<name>libre-excel-boot-starter</name>
 
     <dependencies>
 

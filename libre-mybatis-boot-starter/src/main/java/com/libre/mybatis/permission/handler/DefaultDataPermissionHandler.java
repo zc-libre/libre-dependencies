@@ -3,7 +3,6 @@ package com.libre.mybatis.permission.handler;
 import cn.hutool.core.util.ArrayUtil;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.google.common.collect.Lists;
-import com.libre.core.toolkit.ClassUtil;
 import com.libre.core.toolkit.StringUtil;
 import com.libre.mybatis.annotation.DataPermission;
 import com.libre.mybatis.permission.enums.DataPermissionEnum;
@@ -26,8 +25,8 @@ import net.sf.jsqlparser.statement.select.SelectItem;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.lang.NonNull;
+import org.springframework.util.ClassUtils;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -43,7 +42,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DefaultDataPermissionHandler implements LibreDataPermissionHandler, ApplicationContextAware {
 
-    private final JdbcTemplate jdbcTemplate;
     private final ConcurrentMap<String, DataPermission> dataAuthMap = new ConcurrentHashMap<>(8);
     private final DataPermissionProperties dataPermissionProperties;
     private final DataPermissionProcessor dataPermissionProcessor;
@@ -51,7 +49,7 @@ public class DefaultDataPermissionHandler implements LibreDataPermissionHandler,
 
     @Override
     public void  getSqlSegment(PlainSelect plainSelect, String mappedStatementId) {
-        if (!dataPermissionProperties.getEnabled()) {
+        if (!dataPermissionProperties.getEnabled().equals(Boolean.TRUE)) {
             return;
         }
         log.info("plainSelect: {}, mappedStatementId: {}", plainSelect, mappedStatementId);
@@ -71,7 +69,7 @@ public class DefaultDataPermissionHandler implements LibreDataPermissionHandler,
 
         setSelectItems(fields, plainSelect);
         DataPermissionEntity dataPermissionEntity = new DataPermissionEntity(column, type, Lists.newArrayList(fields));
-        dataPermissionEntity =  dataPermissionProcessor.processor(dataPermissionEntity);
+        dataPermissionProcessor.processor(dataPermissionEntity);
         AndExpression andExpression = new AndExpression(where, buildExpression(dataPermissionEntity));
         setExpression(andExpression, plainSelect);
     }
@@ -111,13 +109,13 @@ public class DefaultDataPermissionHandler implements LibreDataPermissionHandler,
     }
 
     private DataPermission findDataAuthAnnotation(String mappedStatementId) {
-        return dataAuthMap.computeIfAbsent(mappedStatementId, (key) -> {
+        return dataAuthMap.computeIfAbsent(mappedStatementId, key -> {
 
             String className = key.substring(0, key.lastIndexOf(StringPool.DOT));
-            String mapperBean = StringUtil.firstCharToLower(ClassUtil.getShortName(className));
+            String mapperBean = StringUtil.firstCharToLower(ClassUtils.getShortName(className));
             Object mapper = applicationContext.getBean(mapperBean);
             String methodName = key.substring(key.lastIndexOf(StringPool.DOT) + 1);
-            Class<?>[] interfaces = ClassUtil.getAllInterfaces(mapper);
+            Class<?>[] interfaces = ClassUtils.getAllInterfaces(mapper);
             for (Class<?> mapperInterface : interfaces) {
                 for (Method method : mapperInterface.getDeclaredMethods()) {
                     if (methodName.equals(method.getName()) && method.isAnnotationPresent(DataPermission.class)) {

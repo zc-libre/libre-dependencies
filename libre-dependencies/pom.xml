@@ -2,25 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.2.RELEASE</version>
-        <relativePath/>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.libre.platform</groupId>
+    <groupId>com.zclibre</groupId>
     <artifactId>libre-dependencies</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
 
-        <libre.dependencies.version>1.0.0</libre.dependencies.version>
-        <security-oauth2.version>2.3.8.RELEASE</security-oauth2.version>
+        <libre.dependencies.version>1.0.1</libre.dependencies.version>
+        <spring.security.oauth2.version>2.2.5.RELEASE</spring.security.oauth2.version>
         <security-jwt.version>1.1.0.RELEASE</security-jwt.version>
         <mybatis.plus.version>3.4.2</mybatis.plus.version>
         <mybatis.plus.dynamic.version>3.2.0</mybatis.plus.dynamic.version>
@@ -40,33 +34,58 @@
 		<easyexcel.version>2.2.6</easyexcel.version>
 		<poi.version>4.0.1</poi.version>
         <cglib.version>3.3.0</cglib.version>
+        <jwt.version>0.9.1</jwt.version>
+        <redisson.version>3.11.6</redisson.version>
+        <jetcache.version>2.6.0</jetcache.version>
     </properties>
+
 
     <dependencyManagement>
        <dependencies>
            <dependency>
-               <groupId>com.libre</groupId>
+               <groupId>com.zclibre</groupId>
                <artifactId>libre-core</artifactId>
                <version>${libre.dependencies.version}</version>
            </dependency>
            <dependency>
-               <groupId>com.libre</groupId>
+               <groupId>com.zclibre</groupId>
                <artifactId>libre-spring-boot-starter</artifactId>
                <version>${libre.dependencies.version}</version>
            </dependency>
            <dependency>
-               <groupId>com.libre</groupId>
+               <groupId>com.zclibre</groupId>
+               <artifactId>libre-cloud-boot-starter</artifactId>
+               <version>${libre.dependencies.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>com.zclibre</groupId>
+               <artifactId>libre-security-boot-starter</artifactId>
+               <version>${libre.dependencies.version}</version>
+           </dependency>
+
+           <dependency>
+               <groupId>com.zclibre</groupId>
                <artifactId>libre-redis-boot-starter</artifactId>
                <version>${libre.dependencies.version}</version>
            </dependency>
            <dependency>
-               <groupId>com.libre</groupId>
+               <groupId>com.zclibre</groupId>
                <artifactId>libre-mybatis-boot-starter</artifactId>
                <version>${libre.dependencies.version}</version>
            </dependency>
            <dependency>
-               <groupId>com.libre</groupId>
+               <groupId>com.zclibre</groupId>
                <artifactId>libre-excel-boot-starter</artifactId>
+               <version>${libre.dependencies.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>com.zclibre</groupId>
+               <artifactId>libre-swagger-boot-starter</artifactId>
+               <version>${libre.dependencies.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>com.zclibre</groupId>
+               <artifactId>libre-jetcache-boot-starter</artifactId>
                <version>${libre.dependencies.version}</version>
            </dependency>
            <dependency>
@@ -79,16 +98,17 @@
                <artifactId>mybatis-plus-boot-starter</artifactId>
                <version>${mybatis.plus.version}</version>
            </dependency>
-           <!-- 加入spring security spring security oauth2的处理 -->
+
            <dependency>
-               <groupId>org.springframework.security.oauth</groupId>
-               <artifactId>spring-security-oauth2</artifactId>
-               <version>${security-oauth2.version}</version>
+               <groupId>org.redisson</groupId>
+               <artifactId>redisson</artifactId>
+               <version>${redisson.version}</version>
            </dependency>
+
            <dependency>
-               <groupId>org.springframework.security</groupId>
-               <artifactId>spring-security-jwt</artifactId>
-               <version>${security-jwt.version}</version>
+               <groupId>org.springframework.cloud</groupId>
+               <artifactId>spring-cloud-starter-oauth2</artifactId>
+               <version>${spring.security.oauth2.version}</version>
            </dependency>
 
 		   <dependency>
@@ -155,9 +175,27 @@
 		   </dependency>
 
            <dependency>
+               <groupId>com.alicp.jetcache</groupId>
+               <artifactId>jetcache-autoconfigure</artifactId>
+               <version>${jetcache.version}</version>
+               <exclusions>
+                   <exclusion>
+                       <groupId>com.alibaba</groupId>
+                       <artifactId>fastjson</artifactId>
+                   </exclusion>
+               </exclusions>
+           </dependency>
+
+           <dependency>
                <groupId>cglib</groupId>
                <artifactId>cglib</artifactId>
                <version>${cglib.version}</version>
+           </dependency>
+           <!-- JWT -->
+           <dependency>
+               <groupId>io.jsonwebtoken</groupId>
+               <artifactId>jjwt</artifactId>
+               <version>${jwt.version}</version>
            </dependency>
 
            <dependency>
@@ -184,11 +222,14 @@
        </dependencies>
     </dependencyManagement>
 
-	<distributionManagement>
-		<repository>
-			<id>nexus</id>
-			<name>central repository</name>
-			<url>http://172.17.30.61:8081/repository/maven-releases/</url>
-		</repository>
-	</distributionManagement>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 </project>

@@ -1,5 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.libre.redis.config.LibreRedisCacheAutoConfiguration,\
-com.libre.redis.config.RateLimiterAutoConfiguration,\
-com.libre.redis.config.RedisTemplateConfiguration,\
-com.libre.redis.config.RedisCacheManagerConfig
+  com.libre.redis.config.LibreRedisCacheAutoConfiguration,\
+  com.libre.redis.config.RateLimiterAutoConfiguration,\
+  com.libre.redis.config.RedisTemplateConfiguration,\
+  com.libre.redis.config.RedisCacheManagerConfig,\
+  com.libre.redis.lock.RedisLockAutoConfiguration

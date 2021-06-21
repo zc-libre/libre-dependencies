@@ -85,7 +85,7 @@ public class Unchecked {
 	 */
 	public static <T> Predicate<T> predicate(CheckedPredicate<T> predicate) {
 		Objects.requireNonNull(predicate);
-		return (t) -> {
+		return t -> {
 			try {
 				return predicate.test(t);
 			} catch (Throwable e) {

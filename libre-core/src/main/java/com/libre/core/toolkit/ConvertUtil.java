@@ -6,6 +6,7 @@ import lombok.experimental.UtilityClass;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.lang.Nullable;
+import org.springframework.util.ClassUtils;
 
 /**
  * 基于 spring ConversionService 类型转换
@@ -31,7 +32,7 @@ public class ConvertUtil {
 		if (source == null) {
 			return null;
 		}
-		if (ClassUtil.isAssignableValue(targetType, source)) {
+		if (ClassUtils.isAssignableValue(targetType, source)) {
 			return (T) source;
 		}
 		GenericConversionService conversionService = MicaConversionService.getInstance();
