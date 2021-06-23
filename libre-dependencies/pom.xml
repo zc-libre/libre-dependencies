@@ -37,6 +37,7 @@
         <jwt.version>0.9.1</jwt.version>
         <redisson.version>3.11.6</redisson.version>
         <jetcache.version>2.6.0</jetcache.version>
+        <p6spy.version>3.9.1</p6spy.version>
     </properties>
 
 
@@ -97,6 +98,12 @@
                <groupId>com.baomidou</groupId>
                <artifactId>mybatis-plus-boot-starter</artifactId>
                <version>${mybatis.plus.version}</version>
+           </dependency>
+
+           <dependency>
+               <groupId>p6spy</groupId>
+               <artifactId>p6spy</artifactId>
+               <version>${p6spy.version}</version>
            </dependency>
 
            <dependency>
