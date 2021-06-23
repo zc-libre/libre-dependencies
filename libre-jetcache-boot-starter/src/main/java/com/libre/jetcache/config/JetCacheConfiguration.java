@@ -26,6 +26,9 @@ import com.libre.core.toolkit.JsonUtil;
 import com.libre.jetcache.jackson.JacksonKeyConvertor;
 import com.libre.jetcache.jackson.JacksonValueDecoder;
 import com.libre.jetcache.jackson.JacksonValueEncoder;
+import com.libre.jetcache.protostuff.ProtostuffKeyConvertor;
+import com.libre.jetcache.protostuff.ProtostuffValueDecoder;
+import com.libre.jetcache.protostuff.ProtostuffValueEncoder;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -57,6 +60,21 @@ public class JetCacheConfiguration implements InitializingBean {
 	@Bean("jacksonValueEncoder")
 	public JacksonValueEncoder jacksonValueEncoder() {
 		return new JacksonValueEncoder(cacheMapper);
+	}
+
+	@Bean
+	public ProtostuffKeyConvertor protostuffKeyConvertor() {
+		return new ProtostuffKeyConvertor();
+	}
+
+	@Bean
+	public ProtostuffValueEncoder protostuffValueEncoder() {
+		return new ProtostuffValueEncoder();
+	}
+
+	@Bean
+	public ProtostuffValueDecoder protostuffValueDecoder() {
+		return new ProtostuffValueDecoder();
 	}
 
 	@Bean

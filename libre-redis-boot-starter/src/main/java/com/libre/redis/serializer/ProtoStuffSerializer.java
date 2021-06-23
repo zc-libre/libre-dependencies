@@ -1,6 +1,7 @@
 package com.libre.redis.serializer;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.libre.core.toolkit.BytesWrapper;
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;
 import io.protostuff.Schema;
@@ -16,6 +17,8 @@ import org.springframework.data.redis.serializer.SerializationException;
  */
 @Slf4j
 public class ProtoStuffSerializer implements RedisSerializer<Object> {
+
+	@SuppressWarnings("rawtypes")
 	private final Schema<BytesWrapper> schema;
 
 	public ProtoStuffSerializer() {
