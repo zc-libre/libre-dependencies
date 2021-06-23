@@ -37,7 +37,7 @@ public class LibreXssProperties {
 	/**
 	 * 开启xss
 	 */
-	private boolean enabled = true;
+	private boolean enabled = Boolean.TRUE;
 	/**
 	 * 全局：对文件进行首尾 trim
 	 */

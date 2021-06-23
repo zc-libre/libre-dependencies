@@ -31,10 +31,10 @@ import java.beans.PropertyEditorSupport;
  *
  * @author L.cm
  */
-
 @ControllerAdvice
 @RequiredArgsConstructor
 public class FormXssClean {
+
 	private final LibreXssProperties properties;
 	private final XssCleaner xssCleaner;
 
@@ -69,5 +69,4 @@ public class FormXssClean {
 			}
 		}
 	}
-
 }

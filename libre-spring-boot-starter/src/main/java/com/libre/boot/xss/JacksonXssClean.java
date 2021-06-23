@@ -46,7 +46,7 @@ public class JacksonXssClean extends JsonDeserializer<String> {
 		}
 		if (XssHolder.isEnabled()) {
 			String value = xssCleaner.clean(XssUtil.trim(text, properties.isTrimText()));
-			log.debug("Json property value:{} cleaned up by mica-xss, current value is:{}.", text, value);
+			log.debug("Json property value:{} cleaned up, current value is:{}.", text, value);
 			return value;
 		} else {
 			return XssUtil.trim(text, properties.isTrimText());

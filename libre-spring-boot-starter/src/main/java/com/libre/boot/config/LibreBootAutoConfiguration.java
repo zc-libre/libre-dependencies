@@ -1,5 +1,6 @@
 package com.libre.boot.config;
 
+import com.libre.boot.prop.LibreXssProperties;
 import com.libre.core.toolkit.SpringUtils;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -11,9 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration(proxyBeanMethods = false)
-@EnableConfigurationProperties({XssProperties.class})
 public class LibreBootAutoConfiguration {
-
 
     @Bean
     public SpringUtils springUtils() {
