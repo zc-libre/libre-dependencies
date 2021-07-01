@@ -47,8 +47,5 @@ public class LibreMyBatisAutoConfiguration {
 		return interceptor;
 	}
 
-	@Bean
-	public ConfigurationCustomizer configurationCustomizer() {
-		return configuration -> configuration.setUseDeprecatedExecutor(false);
-	}
+
 }
