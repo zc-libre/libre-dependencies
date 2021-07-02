@@ -28,7 +28,7 @@ public class SwaggerProperties {
     /**
      * 版本号，默认：V1.0
      */
-    private String version = "1.0.1";
+    private String version = "1.0.2";
     /**
      * 组织名
      */

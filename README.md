@@ -1,2 +1,2 @@
-# libre-dependencies-parent
+# libre-dependencies
 核心工具包

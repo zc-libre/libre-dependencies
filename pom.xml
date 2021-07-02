@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zclibre</groupId>
-    <artifactId>libre-dependencies-parent</artifactId>
-    <version>1.0.1</version>
+    <artifactId>libre-dependencies</artifactId>
+    <version>1.0.2</version>
 
-    <name>libre-dependencies-parent</name>
-    <description>libre-dependencies-parent</description>
+    <name>libre-dependencies</name>
+    <description>libre-dependencies</description>
     <url>https://github.com/zc-libre/libre-dependencies</url>
 
     <licenses>
@@ -34,7 +34,6 @@
         <developerConnection>scm:git:git@github.com:zc-libre/libre-dependencies.git</developerConnection>
     </scm>
     <modules>
-        <module>libre-dependencies</module>
         <module>libre-core</module>
         <module>libre-redis-boot-starter</module>
         <module>libre-spring-boot-starter</module>
@@ -57,6 +56,32 @@
 		<spring.cloud.alibaba.version>2021.1</spring.cloud.alibaba.version>
         <spring.boot.version>2.4.2</spring.boot.version>
         <spring.platform.version>Cairo-SR8</spring.platform.version>
+
+        <libre.dependencies.version>1.0.2</libre.dependencies.version>
+        <spring.security.oauth2.version>2.2.5.RELEASE</spring.security.oauth2.version>
+        <security-jwt.version>1.1.0.RELEASE</security-jwt.version>
+        <mybatis.plus.version>3.4.3.1</mybatis.plus.version>
+        <mybatis.plus.dynamic.version>3.2.0</mybatis.plus.dynamic.version>
+        <mysql.connector.version>8.0.22</mysql.connector.version>
+        <protostuff.version>1.6.0</protostuff.version>
+        <logstash.version>6.2</logstash.version>
+        <jasypt.version>3.0.3</jasypt.version>
+        <hutool.version>5.6.3</hutool.version>
+        <guava.version>29.0-jre</guava.version>
+        <justAuth.version>1.15.6</justAuth.version>
+        <swagger.version>3.0.0</swagger.version>
+        <jjwt.version>0.11.2</jjwt.version>
+        <jsoup.version>1.12.1</jsoup.version>
+        <lombok.version>1.18.16</lombok.version>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <jsoup.version>1.12.1</jsoup.version>
+        <easyexcel.version>2.2.6</easyexcel.version>
+        <poi.version>4.0.1</poi.version>
+        <cglib.version>3.3.0</cglib.version>
+        <jwt.version>0.9.1</jwt.version>
+        <redisson.version>3.11.6</redisson.version>
+        <jetcache.version>2.6.0</jetcache.version>
+        <p6spy.version>3.9.1</p6spy.version>
     </properties>
 
     <dependencyManagement>
@@ -90,13 +115,143 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.zclibre</groupId>
-                <artifactId>libre-dependencies</artifactId>
-                <version>1.0.1</version>
-                <type>pom</type>
-                <scope>import</scope>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
-           </dependencies>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-oauth2</artifactId>
+                <version>${spring.security.oauth2.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.version}</version>
+            </dependency>
+            <!--hutool-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <!-- protostuff -->
+            <dependency>
+                <groupId>io.protostuff</groupId>
+                <artifactId>protostuff-core</artifactId>
+                <version>${protostuff.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.protostuff</groupId>
+                <artifactId>protostuff-runtime</artifactId>
+                <version>${protostuff.version}</version>
+            </dependency>
+            <!--jasypt-->
+            <dependency>
+                <groupId>com.github.ulisesbocchio</groupId>
+                <artifactId>jasypt-spring-boot-starter</artifactId>
+                <version>${jasypt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easyexcel.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.poi</groupId>
+                        <artifactId>poi</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.poi</groupId>
+                        <artifactId>poi-ooxml</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.poi</groupId>
+                        <artifactId>poi-ooxml-schemas</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml-schemas</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alicp.jetcache</groupId>
+                <artifactId>jetcache-autoconfigure</artifactId>
+                <version>${jetcache.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.alibaba</groupId>
+                        <artifactId>fastjson</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
+            <!-- JWT -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!--mapstruct-->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <dependencies>
@@ -242,7 +397,7 @@
                         </executions>
                     </plugin>
                     <!-- GPG -->
-<!--                    <plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>1.5</version>
@@ -254,7 +409,7 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>-->
+                    </plugin>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>

@@ -48,7 +48,7 @@ public class DefaultDataPermissionHandler implements LibreDataPermissionHandler,
     private ApplicationContext applicationContext;
 
     @Override
-    public void  getSqlSegment(PlainSelect plainSelect, String mappedStatementId) {
+    public void getSqlSegment(PlainSelect plainSelect, String mappedStatementId) {
         if (!dataPermissionProperties.getEnabled().equals(Boolean.TRUE)) {
             return;
         }

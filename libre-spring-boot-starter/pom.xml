@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>libre-dependencies-parent</artifactId>
+        <artifactId>libre-dependencies</artifactId>
         <groupId>com.zclibre</groupId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </parent>
     <artifactId>libre-spring-boot-starter</artifactId>
     <name>libre-spring-boot-starter</name>
@@ -16,7 +16,7 @@
         <dependency>
             <groupId>com.zclibre</groupId>
             <artifactId>libre-core</artifactId>
-            <version>1.0.1</version>
+            <version>${libre.dependencies.version}</version>
         </dependency>
 
         <dependency>
