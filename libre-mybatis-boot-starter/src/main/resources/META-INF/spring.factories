@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.libre.mybatis.config.LibreMyBatisAutoConfiguration,\
-  com.libre.mybatis.config.DataPermissionAutoConfiguration
+  com.libre.mybatis.config.DataPermissionAutoConfiguration,\
+  com.libre.mybatis.page.PageArgumentConfiguration
 
