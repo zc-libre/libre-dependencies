@@ -7,7 +7,7 @@
     <parent>
         <artifactId>libre-dependencies</artifactId>
         <groupId>com.zclibre</groupId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
     <artifactId>libre-spring-boot-starter</artifactId>
     <name>libre-spring-boot-starter</name>

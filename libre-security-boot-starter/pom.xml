@@ -4,7 +4,7 @@
     <parent>
         <artifactId>libre-dependencies</artifactId>
         <groupId>com.zclibre</groupId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,10 +21,10 @@
             <artifactId>jjwt</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
     </dependencies>
 
 </project>

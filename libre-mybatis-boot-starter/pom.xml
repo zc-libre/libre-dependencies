@@ -5,7 +5,7 @@
     <parent>
         <artifactId>libre-dependencies</artifactId>
         <groupId>com.zclibre</groupId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,6 +17,8 @@
 			 <groupId>com.baomidou</groupId>
 			 <artifactId>mybatis-plus-boot-starter</artifactId>
 		 </dependency>
+
+
 
 		 <dependency>
 			 <groupId>com.zclibre</groupId>
@@ -45,6 +47,12 @@
 		 <dependency>
 			 <groupId>p6spy</groupId>
 			 <artifactId>p6spy</artifactId>
+		 </dependency>
+
+		 <dependency>
+			 <groupId>org.springframework</groupId>
+			 <artifactId>spring-webmvc</artifactId>
+			 <scope>provided</scope>
 		 </dependency>
 
 	 </dependencies>
