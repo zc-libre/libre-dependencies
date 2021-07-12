@@ -82,6 +82,7 @@
         <redisson.version>3.11.6</redisson.version>
         <jetcache.version>2.6.0</jetcache.version>
         <p6spy.version>3.9.1</p6spy.version>
+		<spring.plugin.version>2.0.0.RELEASE</spring.plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -114,11 +115,24 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.plugin/spring-plugin-core -->
+			<dependency>
+				<groupId>org.springframework.plugin</groupId>
+				<artifactId>spring-plugin-core</artifactId>
+				<version>${spring.plugin.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.plugin/spring-plugin-metadata -->
+			<dependency>
+				<groupId>org.springframework.plugin</groupId>
+				<artifactId>spring-plugin-metadata</artifactId>
+				<version>${spring.plugin.version}</version>
+			</dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
@@ -377,7 +391,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
+                        <version>2.10.4</version>
                         <configuration>
                             <show>private</show>
                             <nohelp>true</nohelp>
@@ -400,7 +414,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
+                        <version>1.6</version>
                         <executions>
                             <execution>
                                 <phase>verify</phase>

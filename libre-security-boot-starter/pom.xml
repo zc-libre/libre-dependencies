@@ -10,6 +10,7 @@
 
     <artifactId>libre-security-boot-starter</artifactId>
     <name>libre-security-boot-starter</name>
+
     <properties>
         <spring.security.oauth2.version>2.2.5.RELEASE</spring.security.oauth2.version>
     </properties>
