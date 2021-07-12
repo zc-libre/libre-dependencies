@@ -1,4 +1,3 @@
-
 package com.libre.core.convert;
 
 import com.fasterxml.jackson.annotation.JsonValue;
