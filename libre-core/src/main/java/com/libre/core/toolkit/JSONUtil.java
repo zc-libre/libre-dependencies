@@ -1,5 +1,3 @@
-
-
 package com.libre.core.toolkit;
 
 import cn.hutool.core.date.DatePattern;
@@ -25,10 +23,8 @@ import java.util.*;
 
 /**
  * json 工具类
- *
-
  */
-public class JsonUtil {
+public class JSONUtil {
 
 	/**
 	 * 将对象序列化成json字符串

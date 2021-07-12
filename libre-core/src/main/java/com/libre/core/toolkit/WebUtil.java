@@ -117,7 +117,7 @@ public class WebUtil extends org.springframework.web.util.WebUtils {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType(contentType);
 		try (PrintWriter out = response.getWriter()) {
-			out.append(JsonUtil.toJson(result));
+			out.append(JSONUtil.toJson(result));
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
 		}

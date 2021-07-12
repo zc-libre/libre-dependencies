@@ -22,7 +22,7 @@ import com.alicp.jetcache.anno.support.DefaultSpringKeyConvertorParser;
 import com.alicp.jetcache.anno.support.SpringConfigProvider;
 import com.alicp.jetcache.autoconfigure.JetCacheAutoConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.libre.core.toolkit.JsonUtil;
+import com.libre.core.toolkit.JSONUtil;
 import com.libre.jetcache.jackson.JacksonKeyConvertor;
 import com.libre.jetcache.jackson.JacksonValueDecoder;
 import com.libre.jetcache.jackson.JacksonValueEncoder;
@@ -49,7 +49,7 @@ public class JetCacheConfiguration implements InitializingBean {
 
 	@Bean("jacksonKeyConvertor")
 	public JacksonKeyConvertor jacksonKeyConvertor() {
-		return new JacksonKeyConvertor(JsonUtil.getInstance());
+		return new JacksonKeyConvertor(JSONUtil.getInstance());
 	}
 
 	@Bean("jacksonValueDecoder")
@@ -98,7 +98,7 @@ public class JetCacheConfiguration implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		ObjectMapper mapper = JsonUtil.getInstance().copy();
+		ObjectMapper mapper = JSONUtil.getInstance().copy();
 		mapper.activateDefaultTyping(mapper.getPolymorphicTypeValidator());
 		this.cacheMapper = mapper;
 	}

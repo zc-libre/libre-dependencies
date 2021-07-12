@@ -2,7 +2,7 @@ package com.libre.mybatis;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
-import com.libre.core.toolkit.JsonUtil;
+import com.libre.core.toolkit.JSONUtil;
 import com.libre.mybatis.toolkit.PageUtil;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,7 +27,7 @@ public class PageUtilTests {
         page.setSize(10);
 
         Page<User> newPage = PageUtil.toPage(page, User.class);
-        System.out.println(JsonUtil.toJson(newPage));
+        System.out.println(JSONUtil.toJson(newPage));
         Assert.assertNotNull(newPage);
     }
 }
