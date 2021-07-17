@@ -43,6 +43,7 @@
         <module>libre-security-boot-starter</module>
         <module>libre-mybatis-boot-starter</module>
         <module>libre-jetcache-boot-starter</module>
+        <module>libre-captcha-boot-starter</module>
     </modules>
     <packaging>pom</packaging>
 

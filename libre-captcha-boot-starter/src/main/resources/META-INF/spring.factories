@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.libre.captcha.config.CaptchaAutoConfiguration,\
+  com.libre.captcha.config.CaptchaCacheAutoConfiguration
