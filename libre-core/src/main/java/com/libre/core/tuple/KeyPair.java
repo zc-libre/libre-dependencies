@@ -1,22 +1,42 @@
 package com.libre.core.tuple;
 
-import cn.hutool.crypto.SecureUtil;
+import com.libre.core.toolkit.RsaUtil;
 import lombok.RequiredArgsConstructor;
 
+import java.security.PrivateKey;
+import java.security.PublicKey;
 
 /**
  * rsa 的 key pair 封装
- * @author ZC
+ *
+ * @author L.cm
  */
 @RequiredArgsConstructor
 public class KeyPair {
+	private final java.security.KeyPair keyPair;
+
+	public PublicKey getPublic() {
+		return keyPair.getPublic();
+	}
+
+	public PrivateKey getPrivate() {
+		return keyPair.getPrivate();
+	}
+
+	public byte[] getPublicBytes() {
+		return this.getPublic().getEncoded();
+	}
+
+	public byte[] getPrivateBytes() {
+		return this.getPrivate().getEncoded();
+	}
 
 	public String getPublicBase64() {
-		return SecureUtil.rsa().getPublicKeyBase64();
+		return RsaUtil.getKeyString(this.getPublic());
 	}
 
 	public String getPrivateBase64() {
-		return SecureUtil.rsa().getPrivateKeyBase64();
+		return RsaUtil.getKeyString(this.getPrivate());
 	}
 
 	@Override
